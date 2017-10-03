@@ -16,15 +16,15 @@
  * {% raw %}
  * <div class="hexo-multi-codeblock">
  * {% endraw %}
- *   <!-- this will be <pre slot="esnext" ...>...</pre> -->
+ *   <!-- this will be <figure slot="esnext" ...>...</figure> -->
  * ```js
  * const greeting = `hello ${name}`;
  * ```
- *   <!-- <pre slot="es5" ...>...</pre> -->
+ *   <!-- <figure slot="es5" ...>...</figure> -->
  * ```js
  * var greeting = 'hello ' + name;
  * ```
- *   <!-- <pre slot="php" ...>...</pre> -->
+ *   <!-- <figure slot="php" ...>...</figure> -->
  * ```php
  * $greeting = 'hello ' . $name;
  * {% raw %}
@@ -43,19 +43,7 @@
  *
  */
 
-const marked = require('marked');
 const { highlight } = require('hexo-util'); 
-
-marked.setOptions({
-  langPrefix: '',
-  highlight: function(code, lang) {
-    return highlight(code, {
-      lang: lang,
-      gutter: false,
-      wrap: false
-    });
-  }
-});
 
 const parse = ([defaultLanguage], content) => {
   const [_, ...textParts] = content.split('---');
@@ -74,15 +62,15 @@ const parse = ([defaultLanguage], content) => {
   });
 
   const htmlParts = objectParts.map((objectPart) => {
-    const pre = markdown(
+    const codeblock = highlight(
 `\`\`\`${objectPart.config.language || defaultLanguage || 'js'}
 ${objectPart.content}
 \`\`\``
     );
 
-    const [preTag, ...content] = pre.split('\n');
-    const [preTagName, ...preTagParts] = preTag.split('>');
-    return`${preTagName} slot=${objectPart.config.slot || defaultLanguage || 'js'}>${preTagParts.join('>')}\n${content.join('\n')}`
+    const [codeblockTag, ...content] = codeblock.split('\n');
+    const [codeblockTagName, ...codeblockTagParts] = codeblockTag.split('>');
+    return`${codeblockTagName} slot=${objectPart.config.slot || defaultLanguage || 'js'}>${codeblockTagParts.join('>')}\n${content.join('\n')}`
   });
 
   return `
