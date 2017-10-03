@@ -1,6 +1,6 @@
 {
   "name": "hexo-multiple-codeblock",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "hexo plugin to output simple html structure for selective codeblocks",
   "main": "index.js",
   "scripts": {
