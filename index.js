@@ -43,7 +43,7 @@
  *
  */
 
-const markded = require('marked');
+const marked = require('marked');
 const { highlight } = require('hexo-util'); 
 
 marked.setOptions({
