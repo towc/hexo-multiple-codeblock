@@ -43,9 +43,9 @@
  *
  */
 
-
+const markdown = require('marked');
 const parse = ([defaultLanguage], content) => {
-  const [_, textParts] = content.split('---');
+  const [_, ...textParts] = content.split('---');
 
   const objectParts = textParts.map((textPart) => {
     const [configText, ...content] = textPart.split('\n');
@@ -62,17 +62,19 @@ const parse = ([defaultLanguage], content) => {
 
   const htmlParts = objectParts.map((objectPart) => {
     const pre = markdown(
-      `\`\`\`${objectPart.config.language}\n${objectPart.content}`
+`\`\`\`${objectPart.config.language || defaultLanguage || 'js'}
+${objectPart.content}
+\`\`\``
     );
 
     const [preTag, ...content] = pre.split('\n');
-    const [preTagName, ...preTagParts] = preTag.split(' ');
-    const slottedPre = `${preTagName} slot=${objectPart.config.slot || defaultLanguage || 'js'} ${preTagParts.join(' ')}\n${content.join('\n')}`
-  })
+    const [preTagName, ...preTagParts] = preTag.split('>');
+    return`${preTagName} slot=${objectPart.config.slot || defaultLanguage || 'js'} ${preTagParts.join('>')}\n${content.join('\n')}`
+  });
 
   return `
 <div class="hexo-multi-codeblock">
-  ${htmlParts.join('\n')}
+\t${htmlParts.join('\n\t')}
 </div>
 `
 }
