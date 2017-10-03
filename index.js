@@ -68,6 +68,9 @@ const parse = ([defaultLanguage], content) => {
       gutter: false
     });
 
+
+    console.log(objectPart);
+
     const [codeblockTag, ...content] = codeblock.split('\n');
     const [codeblockTagName, ...codeblockTagParts] = codeblockTag.split('>');
     return`${codeblockTagName} slot=${objectPart.config.slot || defaultLanguage || 'js'}>${codeblockTagParts.join('>')}\n${content.join('\n')}`
