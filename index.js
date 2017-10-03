@@ -62,7 +62,7 @@ const parse = ([defaultLanguage], content) => {
   });
 
   const htmlParts = objectParts.map((objectPart) => {
-    const codeblock = highlight(objectPart.content, { 
+    const codeblock = highlight(objectPart.content.trimRight(), { 
       lang: objectPart.config.language,
       wrap: true,
       gutter: false
