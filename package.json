@@ -1,0 +1,26 @@
+{
+  "name": "hexo-multiple-codeblock",
+  "version": "0.0.2",
+  "description": "hexo plugin to output simple html structure for selective codeblocks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/towc/hexo-multiple-codeblock.git"
+  },
+  "keywords": [
+    "hexo",
+    "multiple",
+    "codeblock",
+    "plugin",
+    "hexo-plugin"
+  ],
+  "author": "towc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/towc/hexo-multiple-codeblock/issues"
+  },
+  "homepage": "https://github.com/towc/hexo-multiple-codeblock#readme"
+}
