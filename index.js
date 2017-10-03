@@ -54,7 +54,7 @@ const parse = ([defaultLanguage], content) => {
 
     return {
       config: {
-        language,
+        language: language || defaultLanguage || 'js',
         slot
       },
       content: content.join('\n')
@@ -63,13 +63,11 @@ const parse = ([defaultLanguage], content) => {
 
   const htmlParts = objectParts.map((objectPart) => {
     const codeblock = highlight(objectPart.content, { 
-      lang: objectPart.config.language || defaultLanguage || 'js',
+      lang: objectPart.config.language,
       wrap: false,
       gutter: false
     });
-
-
-    console.log(objectPart);
+    console.log(codeblock, objectPart);
 
     const [codeblockTag, ...content] = codeblock.split('\n');
     const [codeblockTagName, ...codeblockTagParts] = codeblockTag.split('>');
