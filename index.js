@@ -62,7 +62,11 @@ const parse = ([defaultLanguage], content) => {
   });
 
   const htmlParts = objectParts.map((objectPart) => {
-    const codeblock = highlight( objectPart.content, { lang: objectPart.config.language || defaultLanguage || 'js'});
+    const codeblock = highlight(objectPart.content, { 
+      lang: objectPart.config.language || defaultLanguage || 'js',
+      wrap: false,
+      gutter: false
+    });
 
     const [codeblockTag, ...content] = codeblock.split('\n');
     const [codeblockTagName, ...codeblockTagParts] = codeblockTag.split('>');
