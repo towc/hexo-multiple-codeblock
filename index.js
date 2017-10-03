@@ -43,7 +43,20 @@
  *
  */
 
-const markdown = require('marked');
+const markded = require('marked');
+const { highlight } = require('hexo-util'); 
+
+marked.setOptions({
+  langPrefix: '',
+  highlight: function(code, lang) {
+    return highlight(code, {
+      lang: lang,
+      gutter: false,
+      wrap: false
+    });
+  }
+});
+
 const parse = ([defaultLanguage], content) => {
   const [_, ...textParts] = content.split('---');
 
