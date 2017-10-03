@@ -69,7 +69,7 @@ ${objectPart.content}
 
     const [preTag, ...content] = pre.split('\n');
     const [preTagName, ...preTagParts] = preTag.split('>');
-    return`${preTagName} slot=${objectPart.config.slot || defaultLanguage || 'js'} ${preTagParts.join('>')}\n${content.join('\n')}`
+    return`${preTagName} slot=${objectPart.config.slot || defaultLanguage || 'js'}>${preTagParts.join('>')}\n${content.join('\n')}`
   });
 
   return `
