@@ -77,4 +77,4 @@ const parse = ([defaultLanguage], content) => {
 `
 }
 
-hexo.extend.tag.register('multicodeblock', parse)
+hexo.extend.tag.register('multicodeblock', parse, {ends: true})
